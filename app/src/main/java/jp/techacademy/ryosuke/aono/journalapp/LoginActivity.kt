@@ -58,19 +58,21 @@ class LoginActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 val user = mAuth.currentUser
                 val userRef = db.collection("users").document(user!!.uid)
+                Log.d("tag",userRef.toString())
                 if(mIsCreateAccount){
                     // アカウント作成の時は表示名をFirebaseに保存する
                     val name = username.text.toString()
                     val data = HashMap<String, String>()
                     data["name"] = name
 
-                    db.collection("users").add(data)
+                    userRef.set(data)
                     // 表示名をPreferenceに保存する
                     saveName(name)
                 }else{
                     userRef.get().addOnSuccessListener { document ->
                         if(document != null){
                             val data = document.data
+                            Log.d("tag",data.toString())
                             saveName(data!!["name"] as String)
                         }
                     }.addOnFailureListener { exception ->
@@ -120,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
             val email = email.text.toString()
             val password = password.text.toString()
 
-            if (email.length != 0 && password.length >= 6) {
+            if (email.isNotEmpty() && password.length >= 6) {
                 // フラグを落としておく
                 mIsCreateAccount = false
 

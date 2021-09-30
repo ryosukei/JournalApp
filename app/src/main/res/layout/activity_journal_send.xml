@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".JournalSendActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleText"
+        android:gravity="top"
+        android:hint="@string/journal_title"
+        android:inputType="text"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/journal_feeling"
+        android:id="@+id/feelingTextView"
+        android:layout_below="@+id/titleText"
+        android:layout_alignParentStart="true"/>
+
+    <Spinner
+        android:id="@+id/feelingSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/feelingTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"
+        android:gravity="top"
+        android:hint="@string/journal_feeling"
+        android:inputType="text"
+        android:paddingTop="16dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contentText"
+        android:maxLines="10"
+        android:gravity="top"
+        android:hint="@string/journal_content"
+        android:inputType="text"
+        android:layout_below="@+id/feelingSpinner"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/journal_public"
+        android:id="@+id/publicTextView"
+        android:layout_below="@+id/contentText"
+        android:layout_alignParentStart="true"/>
+
+    <Spinner
+        android:id="@+id/publicSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/publicTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"
+        android:gravity="top"
+        android:hint="@string/journal_title"
+        android:inputType="text"
+        android:paddingTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="日付"
+        android:id="@+id/dateTextView"
+        android:layout_below="@+id/publicSpinner"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/date_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateTextView"
+        android:layout_alignParentStart="true"
+        android:text="----/--/--" />
+
+    <Button
+        android:id="@+id/done_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_button"
+        android:layout_alignParentRight="true"
+        android:text="決定" />
+
+</RelativeLayout>

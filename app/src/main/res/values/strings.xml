@@ -21,4 +21,28 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">ログインに失敗しました</string>
     <string name="signUp_failed">新規登録に失敗しました</string>
+    <string name="menu_logout_label">ログアウト</string>
+    <string name="menu_change_label">変更</string>
+    <string name="logout_complete_message">ログアウトしました</string>
+    <string name="change_disp_name">表示名を変更しました。</string>
+    <string name="tab_title_timeline">タイムライン</string>
+    <string name="tab_title_myList">自分だけの日記</string>
+    <string name="journal_send_title">日記作成</string>
+    <string name="journal_title_label">日記を書く</string>
+    <string name="journal_title">タイトル</string>
+    <string name="journal_feeling">気分</string>
+    <string name="journal_content">今日の出来事</string>
+    <string name="journal_public">公開範囲</string>
+    <string name="journal_date">日付</string>
+
+    <string-array name="feelingSpinnerItems">
+        <item>最高</item>
+        <item>普通</item>
+        <item>悲しい</item>
+    </string-array>
+
+    <string-array name="publicSpinnerItems">
+        <item>公開</item>
+        <item>非公開</item>
+    </string-array>
 </resources>

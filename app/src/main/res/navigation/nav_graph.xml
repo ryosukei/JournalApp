@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="jp.techacademy.ryosuke.aono.journalapp.FirstFragment"
+        android:name="jp.techacademy.ryosuke.aono.journalapp.TimeLineFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="jp.techacademy.ryosuke.aono.journalapp.SecondFragment"
+        android:name="jp.techacademy.ryosuke.aono.journalapp.MyJournalFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
