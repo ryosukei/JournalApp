@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), FragmentCallback {
     private val viewPagerAdapter by lazy { ViewPagerAdapter(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +48,12 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout,viewPager2) {tab,position ->
             tab.setText(viewPagerAdapter.titleIds[position])
         }.attach()
+    }
+
+    override fun onClickItem(journal: Journal){
+        val intent = Intent(applicationContext, JournalDetailActivity::class.java)
+        intent.putExtra("journal",journal)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

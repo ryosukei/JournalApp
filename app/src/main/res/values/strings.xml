@@ -34,7 +34,7 @@
     <string name="journal_content">今日の出来事</string>
     <string name="journal_public">公開範囲</string>
     <string name="journal_date">日付</string>
-
+    <string name="journal_name">名前</string>
     <string-array name="feelingSpinnerItems">
         <item>最高</item>
         <item>普通</item>

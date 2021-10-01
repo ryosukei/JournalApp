@@ -10,11 +10,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
+import java.text.SimpleDateFormat
 
 class JournalListAdapter(private val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     // 取得したデータを解析し、Shop型オブジェクトとして生成したものを格納するリスト
     private val items = mutableListOf<Journal>()
-
+    // Itemを押したときのメソッド
+    var onClickItem: ((Journal) -> Unit)? = null
     // 表示リスト更新時に呼び出すメソッド
     fun refresh(list: List<Journal>) {
         items.apply {
@@ -54,10 +56,21 @@ class JournalListAdapter(private val context: Context): RecyclerView.Adapter<Rec
         val data = items[position]
         holder.apply {
             rootView.apply {
+                // それぞれの奴を当てはめる
+                titleView.text = data.title
+                feelingView.text = data.feeling
+                contentView.text = data.content
+                nameView.text = data.name
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd");
+                dateView.text = dateFormat.format(data.date)
                 // 偶数番目と奇数番目で背景色を変更させる
                 setBackgroundColor(
                     ContextCompat.getColor(context,
                     if (position % 2 == 0) android.R.color.white else android.R.color.darker_gray))
+
+                setOnClickListener{
+                    onClickItem?.invoke(data)
+                }
             }
         }
     }

@@ -1,8 +1,10 @@
 package jp.techacademy.ryosuke.aono.journalapp
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +26,14 @@ class TimeLineFragment : Fragment() {
     private val journalListAdapter by lazy {JournalListAdapter(requireContext())}
     private val handler = Handler(Looper.getMainLooper())
     private var snapshotListener: ListenerRegistration? = null
+    private var fragmentCallback : FragmentCallback? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is FragmentCallback){
+            fragmentCallback = context
+        }
+    }
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -36,6 +45,12 @@ class TimeLineFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // ここから初期化処理を行う
         // RecyclerViewの初期化
+        journalListAdapter.apply{
+            // Itemをクリックしたとき
+            onClickItem = {
+                fragmentCallback?.onClickItem(it)
+            }
+        }
         recyclerView.apply {
             adapter = journalListAdapter
             layoutManager = LinearLayoutManager(requireContext()) // 一列ずつ表示
@@ -62,13 +77,16 @@ class TimeLineFragment : Fragment() {
                 val results = querySnapshot?.toObjects(FirestoreJournal::class.java)
                 results?.also {
                     journals = it.map { firestoreJournal:FirestoreJournal  ->
-                        Journal(firestoreJournal.title,firestoreJournal.feeling, firestoreJournal.content,firestoreJournal.public, firestoreJournal.uid,firestoreJournal.id, firestoreJournal.date)
+                        Log.d("tag",firestoreJournal.title)
+                        Journal(firestoreJournal.title,firestoreJournal.feeling, firestoreJournal.content,firestoreJournal.public, firestoreJournal.name, firestoreJournal.uid,firestoreJournal.id, firestoreJournal.date)
                     }
                 }
+                Log.d("tag",journals.size.toString())
+                handler.post {
+                    updateRecyclerView(journals)
+                }
             }
-        handler.post {
-            updateRecyclerView(journals)
-        }
+
     }
     private fun updateRecyclerView(list: List<Journal>) {
         journalListAdapter.refresh(list)
